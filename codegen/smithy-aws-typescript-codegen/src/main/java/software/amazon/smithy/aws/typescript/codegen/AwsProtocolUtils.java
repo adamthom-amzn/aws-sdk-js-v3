@@ -293,6 +293,16 @@ final class AwsProtocolUtils {
         if (testCase.getId().equals("QueryCustomizedError")) {
             return true;
         }
+        if (testCase.getId().equals("RestJsonStreamingTraitsRequireLengthWithBlob") && settings.generateServerSdk()) {
+            return true;
+        }
+        //TODO: https://github.com/awslabs/smithy/pull/857 and https://github.com/awslabs/smithy-typescript/pull/377
+        if ((testCase.getId().equals("RestJsonAllQueryStringTypes")
+                || testCase.getId().equals("RestJsonQueryStringEscaping"))
+                && settings.generateServerSdk()) {
+            return true;
+        }
+
         return false;
     }
 }
